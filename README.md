@@ -1,11 +1,55 @@
-# Minecraft Plugin Cursor
+# Minecraft Plugin Starter Template
 
-A simple Minecraft plugin that displays a welcome message when players join the server.
+A starter template for creating Minecraft plugins compatible with PaperMC and Bukkit servers. This template provides a basic structure and example code to help you get started quickly.
 
 ## Features
 
-- Displays a welcome message to players when they join the server
+- Basic plugin structure with Maven build system
+- Example player join event handler
 - Compatible with PaperMC and Bukkit servers
+- Development environment setup with auto-reload
+
+## Using this to start a new plugin
+
+1. **Clone and Rename**
+   ```bash
+   git clone https://github.com/yourusername/mc-plugin-cursor.git your-plugin-name
+   cd your-plugin-name
+   ```
+
+2. **Update Project Information**
+   - Edit `pom.xml`:
+     ```xml
+     <groupId>com.yourdomain</groupId>
+     <artifactId>your-plugin-name</artifactId>
+     <version>1.0-SNAPSHOT</version>
+     <name>YourPluginName</name>
+     ```
+   - Update `plugin.yml`:
+     ```yaml
+     name: YourPluginName
+     version: '${project.version}'
+     main: com.yourdomain.yourpluginname.YourPluginName
+     api-version: '1.20'
+     description: Your plugin description
+     author: YourName
+     ```
+
+3. **Update Package Structure**
+   - Rename the base package from `com.example.mcplugincursor` to `com.yourdomain.yourpluginname`
+   - Update the main class name and package declaration
+   - Move files to match your new package structure
+
+4. **Customize Development Environment**
+   - Edit `dev.sh` and update `SERVER_PLUGINS_DIR` to point to your server:
+     ```bash
+     SERVER_PLUGINS_DIR="/path/to/your/server/plugins"
+     ```
+
+5. **Start Development**
+   - Remove the example code in `MinecraftPluginCursor.java`
+   - Create your own plugin logic
+   - Use the provided folder structure for organizing your code
 
 ## Requirements
 
@@ -15,42 +59,73 @@ A simple Minecraft plugin that displays a welcome message when players join the 
 
 ## Building the Plugin
 
-1. Clone this repository
-2. Navigate to the project directory
-3. Run the following command to build the plugin:
+1. Navigate to the project directory
+2. Run the following command to build the plugin:
    ```bash
    mvn clean package
    ```
-4. The compiled plugin will be available in the `target` directory as `mc-plugin-cursor-1.0-SNAPSHOT.jar`
+3. The compiled plugin will be available in the `target` directory as `your-plugin-name-1.0-SNAPSHOT.jar`
 
-## Installation
+## Development Setup
 
-1. Stop your Minecraft server
-2. Copy the compiled plugin JAR file to your server's `plugins` directory
-3. Start your Minecraft server
-4. The plugin will automatically load and be ready to use
+1. Make sure your Minecraft server is running with development mode:
+   ```bash
+   java -Dpaper.development=true -jar paper.jar
+   ```
 
-## Usage
+2. Start the development script:
+   ```bash
+   ./dev.sh
+   ```
 
-The plugin will automatically display a welcome message to players when they join the server. No additional configuration is required.
+3. The script will automatically rebuild and deploy your plugin when you make changes.
 
 ## Project Structure
 
 ```
-mc-plugin-cursor/
+your-plugin-name/
 ├── src/
 │   └── main/
 │       ├── java/
 │       │   └── com/
-│       │       └── example/
-│       │           └── mcplugincursor/
-│       │               └── MinecraftPluginCursor.java
+│       │       └── yourdomain/
+│       │           └── yourpluginname/
+│       │               ├── commands/     # Command classes
+│       │               ├── listeners/    # Event listener classes
+│       │               ├── managers/     # Plugin manager classes
+│       │               ├── models/       # Data model classes
+│       │               └── utils/        # Utility classes
 │       └── resources/
-│           └── plugin.yml
+│           ├── plugin.yml
+│           ├── config.yml
+│           └── messages.yml
 ├── pom.xml
+├── dev.sh
 └── README.md
 ```
 
+## Best Practices
+
+1. **Package Structure**
+   - Keep related classes together in appropriate packages
+   - Use the provided folder structure for organization
+   - Follow Java naming conventions
+
+2. **Configuration**
+   - Use `config.yml` for plugin settings
+   - Use `messages.yml` for all text messages
+   - Support color codes and placeholders
+
+3. **Events**
+   - Create separate listener classes for different event types
+   - Use meaningful event handler names
+   - Implement proper error handling
+
+4. **Commands**
+   - Create separate command classes
+   - Implement tab completion where appropriate
+   - Provide clear command usage messages
+
 ## License
 
-This project is open source and available under the MIT License. 
+This project is open source and available under the MIT License. Feel free to use this template for your own plugins. 
